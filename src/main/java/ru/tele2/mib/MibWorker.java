@@ -1,17 +1,30 @@
 package ru.tele2.mib;
 
-import com.bercut.sml.server.monitoring.mib.MibConnection;
-import com.bercut.sml.server.monitoring.mib.MibException;
+import org.apache.log4j.Logger;
+import ru.tele2.esb.Tools;
 
 import java.util.List;
 
 public class MibWorker {
+    final static Logger logger = Logger.getLogger(MibWorker.class);
 
     public static void main(String[] args) {
-        MibConnection connection = null;
+        logger.info("Application started");
+
+        Tools tools = new Tools();
+        tools.debug(logger, "test");
+        final DbTools dbTools = new DbTools();
+        List<String> startedHosts = dbTools.getStartedHosts();
+        for (String host : startedHosts) {
+            logger.info(host);
+        }
+
+
+
+        /*MibConnection connection = null;
         try {
-            /*System.out.println("test");
-            System.out.println(System.getProperty("java.library.path"));*/
+            *//*System.out.println("test");
+            System.out.println(System.getProperty("java.library.path"));*//*
             connection = new MibConnection("10.78.223.224");
             System.out.println("1: " + connection.isConnected());
             List<String> groups = connection.getGroups("/CMP_SLES_v3.3_SMEV/@artifacts/SE_IEIS_v1.0/");
@@ -33,7 +46,10 @@ public class MibWorker {
                 System.out.println("Closed");
                 System.out.println("3: " + connection.isConnected());
             }
-        }
+        }*/
 
+
+        dbTools.closeDbConnection();
+        logger.info("Application stopped");
     }
 }
