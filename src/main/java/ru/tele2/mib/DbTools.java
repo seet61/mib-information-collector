@@ -5,7 +5,6 @@ import ru.tele2.esb.Tools;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +15,7 @@ public class DbTools {
     private Connection connection = null;
 
     public DbTools() {
-        conf = tools.get_conf();
+        this.conf = tools.get_conf();
         getDbConnection();
     }
 
@@ -31,15 +30,13 @@ public class DbTools {
         String url = (String) this.conf.get("db.url");
         String name = (String) this.conf.get("db.login");
         String password = (String) this.conf.get("db.password");
-        this.tools.debug(logger,"Получена конфигурация подключения к БД " + url);
         try {
             Class.forName("org.postgresql.Driver");
             DriverManager.setLoginTimeout(Integer.parseInt((String) this.conf.get("db.connect.timeout")));
             this.tools.debug(logger, url + " " + name + " " + password);
             connection = DriverManager.getConnection(url, name, password);
-            this.tools.debug(logger,"Драйвер подключен");
             if (!connection.isClosed()) {
-                this.tools.debug(logger, "Подключились к БД");
+                this.tools.debug(logger, "Connection to DB was opened");
             }
         } catch (SQLException e) {
             logger.error(e.getStackTrace());
@@ -58,10 +55,10 @@ public class DbTools {
         if (this.connection != null) {
             try {
                 this.connection.close();
-                this.tools.debug(logger,"Соединение с БД закрыто");
+                this.tools.debug(logger,"Connection to DB was closed");
             }
             catch (Exception e) {
-                this.tools.debug(logger,"Не закрыто соединение с БД: " + e.getMessage());
+                this.tools.debug(logger,"Can't close connection with DB: " + e.getMessage());
             }
         }
     }
