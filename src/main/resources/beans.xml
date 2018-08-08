@@ -19,7 +19,7 @@
     </bean>
 
     <!-- Definition for InitServersJDBCTemplate bean -->
-    <bean id="initServersJDBCTemplate" class="ru.tele2.dao.initServers.InitServersJDBCTemplate">
+    <bean id="testZoneJDBCTemplate" class="ru.tele2.dao.TestZoneJDBCTemplate">
         <property name="dataSource" ref="dataSource" />
     </bean>
 </beans>

@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import ru.bercut.mibsdk.MibException;
 import ru.tele2.dao.initServers.InitServers;
-import ru.tele2.dao.initServers.InitServersJDBCTemplate;
+import ru.tele2.dao.TestZoneJDBCTemplate;
 import ru.tele2.esb.Tools;
 
 import java.io.PrintWriter;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class MibWorker {
     final static Logger logger = Logger.getLogger(MibWorker.class);
     private static Map conf = null;
-
+    private static TestZoneJDBCTemplate testZoneJDBCTemplate = null;
 
     public static void main(String[] args) {
         logger.info(StringUtils.repeat("#", 100));
@@ -26,8 +26,8 @@ public class MibWorker {
         Tools tools = new Tools();
         conf = tools.get_conf();
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        InitServersJDBCTemplate initServersJDBCTemplate = (InitServersJDBCTemplate) context.getBean("initServersJDBCTemplate");
-        List<InitServers> initServers = initServersJDBCTemplate.listInitServers();
+        testZoneJDBCTemplate = (TestZoneJDBCTemplate) context.getBean("testZoneJDBCTemplate");
+        List<InitServers> initServers = testZoneJDBCTemplate.listInitServers();
         System.out.println(initServers.size());
         for (InitServers serv: initServers) {
             String host = serv.getHostIp();
@@ -40,6 +40,7 @@ public class MibWorker {
             tools.debug(logger, "working with host: " + host);
             try (MibConnector mibConnector = new MibConnector(host)){
                 Map<String, Map> hostInfo = mibConnector.getInformationOfHost();
+
                 dbTools.saveHostInfo(hostId, hostInfo);
             } catch (MibException e) {
                 StringWriter sw = new StringWriter();
