@@ -20,6 +20,13 @@ public interface ServerServicesDAO {
 
     /**
      * This is the method to be used to list down
+     * a record from the server_services table corresponding
+     * to a passed rule.
+     */
+    public List<ServerServices> searchExternalService(int servId, String dataPort, String servicePort);
+
+    /**
+     * This is the method to be used to list down
      * all the records from the init_servers table.
      */
     public List<ServerServices> listServerServices();

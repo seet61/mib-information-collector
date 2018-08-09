@@ -58,7 +58,42 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/initServers/InitServersDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/initServers/InitServersMapper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/portTypesExtCon/PortTypesExtCon.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/portTypesExtCon/PortTypesExtConDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/portTypesExtCon/PortTypesExtConMapper.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/portTypesExtCon/portTypesExtCon.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/portTypesExtCon/portTypesExtConDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/ru/tele2/dao/portTypesExtCon/portTypesExtConMapper.java">
           <value>
             <set />
           </value>

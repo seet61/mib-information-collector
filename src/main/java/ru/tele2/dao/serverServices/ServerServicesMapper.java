@@ -15,14 +15,14 @@ public class ServerServicesMapper implements RowMapper<ServerServices> {
         serverServices.setServiceName(resultSet.getString("service_name"));
         serverServices.setServiceType(resultSet.getString("service_type"));
         serverServices.setServiceVersion(resultSet.getString("service_type"));
-        serverServices.setDataPort(resultSet.getString("date_port"));
+        serverServices.setDataPort(resultSet.getString("data_port"));
         serverServices.setHttpPort(resultSet.getString("http_port"));
         serverServices.setServicePort(resultSet.getString("service_port"));
         serverServices.setStartDate(resultSet.getDate("start_date"));
         serverServices.setEndDate(resultSet.getDate("end_date"));
         serverServices.setSystemName(resultSet.getString("system_name"));
         serverServices.setSystemVersion(resultSet.getString("system_version"));
-        serverServices.setDataBase(resultSet.getString("date_base"));
+        serverServices.setDataBase(resultSet.getString("data_base"));
         return serverServices;
     }
 }
