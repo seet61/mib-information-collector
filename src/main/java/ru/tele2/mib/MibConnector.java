@@ -40,6 +40,7 @@ public class MibConnector implements AutoCloseable {
         Map<String, Map> serviceInfo = new HashMap<>();
         for (String service: rootServices) {
             Map<String, Map<String, Map>> servicePortTypeConnectionsInfo = new HashMap<>();
+            servicePortTypeConnectionsInfo.clear();
             tools.debug(logger, "Host: " + this.host + " Working with service: " + service);
             String mibVersion = getMibVersion(service);
             List<String> portTypes = this.connection.getGroups(String.format((String) this.conf.get("service.portTypeRouting"), service, mibVersion));

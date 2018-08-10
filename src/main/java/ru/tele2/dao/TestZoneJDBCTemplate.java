@@ -101,9 +101,24 @@ public class TestZoneJDBCTemplate implements InitServersDAO, ServerServicesDAO, 
     }
 
     @Override
+    public void searchAndDeleteDeadPortTypeExtCons() {
+        this.tools.debug(logger, "searchAndDeleteDeadPortTypeExtCons");
+        String SQL = "select * " +
+                       "from port_types_ext_con p " +
+                      "where p.ext_service_id not in " +
+                             "(select s.service_id from server_services s where s.end_date > current_timestamp) " +
+                        "and p.ext_service_id != -1 ;";
+        List<PortTypesExtCon> deadPortTypes = this.jdbcTemplate.query(SQL, new PortTypesExtConMapper());
+        this.tools.debug(logger, "searchAndDeleteDeadPortTypeExtCons deadPortTypes: " + deadPortTypes);
+        for (PortTypesExtCon deadPortType: deadPortTypes) {
+            this.deletePortTypeExtCon(deadPortType.getServiceId(), deadPortType.getPortType(), deadPortType.getExtServiceId());
+        }
+    }
+
+    @Override
     public void deletePortTypeExtCon(Integer serviceId, String portType, Integer extServiceId) {
-        if(!checkPortTypeExtConExist(serviceId, portType, extServiceId)) {
-            this.tools.debug(logger, "searchPortTypeExtCons with params: " + serviceId + " " + portType + " " + extServiceId + " was deleted");
+        if(checkPortTypeExtConExist(serviceId, portType, extServiceId)) {
+            this.tools.debug(logger, "deletePortTypeExtCon with params: " + serviceId + " " + portType + " " + extServiceId + " was deleted");
             String SQL = "delete from port_types_ext_con where service_id = ? and port_type = ? and ext_service_id = ? ;";
             this.jdbcTemplate.update(SQL, serviceId, portType, extServiceId);
         }

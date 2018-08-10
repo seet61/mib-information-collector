@@ -52,6 +52,7 @@ public class MibWorker {
                 logger.error(sw.toString());
             }
         }
+        testZoneJDBCTemplate.searchAndDeleteDeadPortTypeExtCons();
         logger.info("Application stopped");
     }
 

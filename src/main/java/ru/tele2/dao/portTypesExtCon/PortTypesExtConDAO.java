@@ -24,6 +24,13 @@ public interface PortTypesExtConDAO {
     public List<PortTypesExtCon> searchPortTypeExtCons(Integer serviceId, String portType);
 
     /**
+     * This is the method to be used to list down
+     * a record from the port_types_ext_con table corresponding
+     * to a passed rule.
+     */
+    public void searchAndDeleteDeadPortTypeExtCons();
+
+    /**
      * This is the method to be used to delete
      * a record from the port_types_ext_con table corresponding
      * to a passed rule.
